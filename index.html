@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <title>AURA - your asthma companion</title>
+    </head>
+    <body>
+
+        <div id="loading-screen" class="screen active">
+            <div class="loader-content">
+                <h1 class="glow-text">AURA</h1>
+                <p>Initializing your breathing space...</p>
+            </div>
+        </div>
+
+        <div id="onboarding-screen" class="screen">
+            <div class="container">
+                <h2>Welcome to Aura.</h2>
+                <p>Let's personalize your experience.</p>
+
+                <form id="setup-form">
+                    <label>What is your primary asthma type?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="asthma-type" value="allergic">Allergic</label>
+                        <label><input type="radio" name="asthma-type" value="exercize" required>Exercize-Induced</label>
+                        <label><input type="radio" name="asthma-type" value="both">Both</label>
+                    </div>
+
+                    <label>Do you use Preventer/Controller Medication?</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" id="use-preventer" name="has-preventer">Yes</label>
+                    </div>
+                    <input type="text" id="preventer-name" placeholder="If yes, please enter the name of your medication (e.g. Viani)" style="display: none;">
+
+                    <label>Do you use a Rescue Inhaler/Reliever?</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" id="use-rescue" name="has-rescue">Yes</label>
+                    </div>
+                    <input type="text" id="preventer-name" placeholder="If yes, please enter the name of your medication (e.g. Salbutamol)" style="display: none;">
+
+                    <button type="submit" class="btn-teal">Complete Setup</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="app-screen" class="screen">
+
+            <main id="main-content">
+                <section id="view-home" class="view active">
+                    <h2>Dashboard</h2>
+                    <p>Welcome back! Your lungs are looking good today.</p>
+
+                    <div id="inhaler-3d-container"></div>
+                </section>
+
+                <section id="view-trackers" class="view">
+                    <div class="trackers-header">
+                        <h2>Daily Trackers</h2>
+                        <p>Keep your logs up to date for better insights.</p>
+                    </div>
+
+                    <div class ="tracker-grid">
+                        <div class="tracker-card">
+                            <h3>Medication Log</h3>
+                            <p class="card-subtitle">Did you take your meds today?</p>
+                            <div class="button-group">
+                                <button id="log-controller" class="btn-action">Took Preventer/Controller</button>
+                                <button id="log-reliever" class="btn-action">Used Rescue Inhaler</button>
+                            </div>
+                            <span id="med status" class="status-text">Not logged yet today</span>
+                        </div>
+
+                        <div class="tracker-card">
+                            <h3>Symptom Check</h3>
+                            <p class="card-subtitle">How are your airways feeling right now?</p>
+                            <div class="symptom-buttons">
+                                <button class="symptom-btn" data-level="good">Clear</button>
+                                <button class="symptom-btn" data-level="mild">Tightness/Cough</button>
+                                <button class="symptom-btn" data-level="severe">Wheezing/Shortness</button>
+                            </div>
+                        </div>
+
+                        <div class="tracker-card attack-card">
+                            <h3>Attack Log</h3>
+                            <p class="card-subtitle">Experiencing an unexpected flare-up?</p>
+                            <button id="trigger-attack-mode" class="btn-danger">Log & Open Attack Mode</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="view-calendar" class="view">
+                    <h2>Calendar Overview</h2>
+                    <p>Your history at a glance.</p>
+                </section>
+
+                <section id="view-attack" class="view attack-container">
+                    <h2 class="emergency-title">Attack Mode Active</h2>
+                    <p>Stay calm. Follow the steps below.</p>
+                    <div class="breathing-guide">
+                        <div class="circle-animation"></div>
+                        <p id="breath-instruction">Breathe in slowly (Lippenbremse)...</p>
+                    </div>
+                </section>
+
+                <section id="view-settings" class="view">
+                    <h2>Settings</h2>
+                    <p>Customize your theme and device options.</p>
+                </section>
+            </main>
+
+            <nav class="navbar">
+                <button class="nav-btn active" data-target="view-home">Home</button>
+                <button class="nav-btn" data-target="view-trackers">Trackers</button>
+                <button class="nav-btn" data-target="view-calendar">Calendar</button>
+                <button class="nav-btn btn-attack" data-target="view-attack">Attack</button>
+                <button class="nav-btn" data-target="view-settings">Settings</button>
+            </nav>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>
