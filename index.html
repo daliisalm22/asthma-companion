@@ -4,41 +4,65 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="style.css">
-        <title>AURA - your asthma companion</title>
+        <title>ZEPHYR - your asthma companion</title>
+
+        <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+</style>
     </head>
     <body>
 
         <div id="loading-screen" class="screen active">
             <div class="loader-content">
-                <h1 class="glow-text">AURA</h1>
+                <h1 class="glow-text">ZEPHYR</h1>
                 <p>Initializing your breathing space...</p>
             </div>
         </div>
 
         <div id="onboarding-screen" class="screen">
             <div class="container">
-                <h2>Welcome to Aura.</h2>
+                <h2>Welcome to Zephyr.</h2>
                 <p>Let's personalize your experience.</p>
 
                 <form id="setup-form">
                     <label>What is your primary asthma type?</label>
-                    <div class="radio-group">
-                        <label><input type="radio" name="asthma-type" value="allergic">Allergic</label>
-                        <label><input type="radio" name="asthma-type" value="exercize" required>Exercize-Induced</label>
-                        <label><input type="radio" name="asthma-type" value="both">Both</label>
+                    <div class="card-group" id="asthma-type-group">
+                        <label class="select-card">
+                            <label><input type="radio" name="asthma-type" value="allergic">Allergic</label>
+                            <span class="card-title">Allergic</span>
+                            <span class="card-desc">Triggered by pollen, dust or pets for instance</span>
+                        </label>
+
+                        <label class="select-card">
+                            <label><input type="radio" name="asthma-type" value="exercize" required>Exercize-Induced</label>
+                            <span class="card-title">Exercize-Induced</span>
+                            <span class="card-desc">Triggered by physical activity like running for example</span>
+                        </label>
+
+                        <label class="select-card">
+                            <label><input type="radio" name="asthma-type" value="both">Both</label>
+                            <span class="card-title">Both</span>
+                            <span class="card-desc">Triggered by both allergens or physical activity</span>
+                        </label>
                     </div>
 
-                    <label>Do you use Preventer/Controller Medication?</label>
-                    <div class="checkbox-group">
-                        <label><input type="checkbox" id="use-preventer" name="has-preventer">Yes</label>
+                    <label>Do you use daily control medication?</label>
+                    <div class="card-group">
+                        <label class="select-card checkbox-card">
+                            <input type="checkbox" id="use-preventer" name="has-preventer">
+                            <span class="card-title">Yes, I use a preventer.</span>
+                        </label>
                     </div>
-                    <input type="text" id="preventer-name" placeholder="If yes, please enter the name of your medication (e.g. Viani)" style="display: none;">
+                    <input type="text" id="preventer-name" placeholder="Please enter the name of your medication (e.g. Viani)" style="display: none;">
 
-                    <label>Do you use a Rescue Inhaler/Reliever?</label>
-                    <div class="checkbox-group">
-                        <label><input type="checkbox" id="use-rescue" name="has-rescue">Yes</label>
+                    <label>Do you use a rescue inhaler?</label>
+                    <div class="card-group">
+                        <label class="select-card checkbox-card">
+                            <input type="checkbox" id="use-rescue" name="has-rescue">
+                            <span class="card-title">Yes, I use a reliever.</span>
+                        </label>
                     </div>
-                    <input type="text" id="preventer-name" placeholder="If yes, please enter the name of your medication (e.g. Salbutamol)" style="display: none;">
+                    <input type="text" id="reliever-name" placeholder="Please enter the name of your medication (e.g. Salbutamol)" style="display: none;">
 
                     <button type="submit" class="btn-teal">Complete Setup</button>
                 </form>
