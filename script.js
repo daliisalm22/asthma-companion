@@ -52,8 +52,8 @@ const triggerAttackBtn = document.getElementById("trigger-attack-mode");
 
 if (logControllerBtn){
     logControllerBtn.addEventListener("click", () => {
-        medStatusText.textContent = "Logged: Preventer taken today";
-        medStatusText.style.color = "#4ade80";
+        medStatusText.textContent = "PREVENTER TAKEN TODAY";
+        medStatusText.style.color = "#006726";
     });
 }
 
@@ -66,9 +66,10 @@ symptomBtns.forEach(btn => {
 
 if (triggerAttackBtn) {
     triggerAttackBtn.addEventListener("click", () => {
-        const attackNavBtn = document.querySelector('.nav-btn[data-traget="view-attack"]');
+        const attackNavBtn = document.querySelector('.nav-btn[data-target="view-attack"]');
         if (attackNavBtn) {
             attackNavBtn.click();
         }
     });
 }
+
