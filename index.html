@@ -15,56 +15,53 @@
         <div id="loading-screen" class="screen active">
             <div class="loader-content">
                 <h1 class="glow-text">ZEPHYR</h1>
-                <p>Initializing your breathing space...</p>
+                <p>initializing your breathing space...</p>
             </div>
         </div>
 
         <div id="onboarding-screen" class="screen">
             <div class="container">
-                <h2>Welcome to Zephyr.</h2>
-                <p>Let's personalize your experience.</p>
+                <h2>welcome to Zephyr.</h2>
+                <p>let's personalize your experience.</p>
 
                 <form id="setup-form">
-                    <label>What is your primary asthma type?</label>
+                    <label>what is your primary asthma type?</label>
                     <div class="card-group" id="asthma-type-group">
                         <label class="select-card">
-                            <label><input type="radio" name="asthma-type" value="allergic">Allergic</label>
-                            <span class="card-title">Allergic</span>
-                            <span class="card-desc">Triggered by pollen, dust or pets for instance</span>
+                            <label class="card-title"><input type="radio" name="asthma-type" value="allergic">Allergic</label>
+                            <span class="card-desc">triggered by pollen, dust or pets for instance</span>
                         </label>
 
                         <label class="select-card">
-                            <label><input type="radio" name="asthma-type" value="exercize" required>Exercize-Induced</label>
-                            <span class="card-title">Exercize-Induced</span>
-                            <span class="card-desc">Triggered by physical activity like running for example</span>
+                            <label class="card-title"><input type="radio" name="asthma-type" value="exercize" required>Exercize-Induced</label>
+                            <span class="card-desc">triggered by physical activity like running for example</span>
                         </label>
 
                         <label class="select-card">
-                            <label><input type="radio" name="asthma-type" value="both">Both</label>
-                            <span class="card-title">Both</span>
-                            <span class="card-desc">Triggered by both allergens or physical activity</span>
+                            <label class="card-title"><input type="radio" name="asthma-type" value="both">Both</label>
+                            <span class="card-desc">triggered by both allergens or physical activity</span>
                         </label>
                     </div>
 
-                    <label>Do you use daily control medication?</label>
+                    <label>do you use <b>daily control medication</b>?</label>
                     <div class="card-group">
                         <label class="select-card checkbox-card">
                             <input type="checkbox" id="use-preventer" name="has-preventer">
-                            <span class="card-title">Yes, I use a preventer.</span>
+                            <span class="card-title">yes, I use a preventer.</span>
                         </label>
                     </div>
                     <input type="text" id="preventer-name" placeholder="Please enter the name of your medication (e.g. Viani)" style="display: none;">
 
-                    <label>Do you use a rescue inhaler?</label>
+                    <label>do you use a <b>rescue inhaler</b>?</label>
                     <div class="card-group">
                         <label class="select-card checkbox-card">
                             <input type="checkbox" id="use-rescue" name="has-rescue">
-                            <span class="card-title">Yes, I use a reliever.</span>
+                            <span class="card-title">yes, I use a reliever.</span>
                         </label>
                     </div>
                     <input type="text" id="reliever-name" placeholder="Please enter the name of your medication (e.g. Salbutamol)" style="display: none;">
 
-                    <button type="submit" class="btn-teal">Complete Setup</button>
+                    <button type="submit" class="btn-teal">complete setup</button>
                 </form>
             </div>
         </div>
@@ -73,42 +70,58 @@
 
             <main id="main-content">
                 <section id="view-home" class="view active">
-                    <h2>Dashboard</h2>
-                    <p>Welcome back! Your lungs are looking good today.</p>
-
+                    <div class="dashboard-header">
+                       <h2>Dashboard</h2>
+                        <p>welcome back! ^^</p> 
+                        <button class="edit-btn">Edit</button>
+                    </div>
                     <div id="inhaler-3d-container"></div>
+
+                    <div class="dashboard-grid">
+                        <div class="dash-card">
+                            <h3>Rescue Inhaler Log</h3>
+                        </div>
+
+                        <div class="dash-card attack-card">
+                            <h3>Attack Mode</h3>
+                        </div>
+
+                        <div class="dash-card">
+                            <h3>Daily Preventer</h3>
+                        </div>
+                    </div>
                 </section>
 
                 <section id="view-trackers" class="view">
                     <div class="trackers-header">
                         <h2>Daily Trackers</h2>
-                        <p>Keep your logs up to date for better insights.</p>
+                        <p>track your medication intake, symptoms & asthma attacks.</p>
                     </div>
 
                     <div class ="tracker-grid">
                         <div class="tracker-card">
                             <h3>Medication Log</h3>
-                            <p class="card-subtitle">Did you take your meds today?</p>
+                            <p class="card-subtitle">did you take your meds today?</p>
                             <div class="button-group">
-                                <button id="log-controller" class="btn-action">Took Preventer/Controller</button>
-                                <button id="log-reliever" class="btn-action">Used Rescue Inhaler</button>
+                                <button id="log-controller" class="btn-action">took Preventer/Controller</button>
+                                <button id="log-reliever" class="btn-action">used Rescue Inhaler</button>
                             </div>
-                            <span id="med status" class="status-text">Not logged yet today</span>
+                            <span id="med status" class="status-text">not logged yet today</span>
                         </div>
 
                         <div class="tracker-card">
                             <h3>Symptom Check</h3>
-                            <p class="card-subtitle">How are your airways feeling right now?</p>
+                            <p class="card-subtitle">how are your airways feeling right now?</p>
                             <div class="symptom-buttons">
-                                <button class="symptom-btn" data-level="good">Clear</button>
-                                <button class="symptom-btn" data-level="mild">Tightness/Cough</button>
-                                <button class="symptom-btn" data-level="severe">Wheezing/Shortness</button>
+                                <button class="symptom-btn" data-level="good">clear</button>
+                                <button class="symptom-btn" data-level="mild">tightness/cough</button>
+                                <button class="symptom-btn" data-level="severe">wheezing/shortness</button>
                             </div>
                         </div>
 
                         <div class="tracker-card attack-card">
                             <h3>Attack Log</h3>
-                            <p class="card-subtitle">Experiencing an unexpected flare-up?</p>
+                            <p class="card-subtitle">if you think you are having an asthma attack, then please activate attack mode and follow the instructions.</p>
                             <button id="trigger-attack-mode" class="btn-danger">Log & Open Attack Mode</button>
                         </div>
                     </div>
@@ -116,30 +129,30 @@
 
                 <section id="view-calendar" class="view">
                     <h2>Calendar Overview</h2>
-                    <p>Your history at a glance.</p>
+                    <p>here you can view your past logs.</p>
                 </section>
 
                 <section id="view-attack" class="view attack-container">
                     <h2 class="emergency-title">Attack Mode Active</h2>
-                    <p>Stay calm. Follow the steps below.</p>
+                    <p>please stay calm. follow the steps below.</p>
                     <div class="breathing-guide">
                         <div class="circle-animation"></div>
-                        <p id="breath-instruction">Breathe in slowly (Lippenbremse)...</p>
+                        <p id="breath-instruction">Breathe in slowly (Lippenbremse)... -> Kutschersitz, weiter zusammen tief ein- und ausatmen</p>
                     </div>
                 </section>
 
                 <section id="view-settings" class="view">
                     <h2>Settings</h2>
-                    <p>Customize your theme and device options.</p>
+                    <p>customize your themes and manage your profile data.</p>
                 </section>
             </main>
 
             <nav class="navbar">
-                <button class="nav-btn active" data-target="view-home">Home</button>
-                <button class="nav-btn" data-target="view-trackers">Trackers</button>
-                <button class="nav-btn" data-target="view-calendar">Calendar</button>
-                <button class="nav-btn btn-attack" data-target="view-attack">Attack</button>
-                <button class="nav-btn" data-target="view-settings">Settings</button>
+                <button class="nav-btn active" data-target="view-home">HOME</button>
+                <button class="nav-btn" data-target="view-trackers">TRACKERS</button>
+                <button class="nav-btn" data-target="view-calendar">CALENDAR</button>
+                <button class="nav-btn btn-attack" data-target="view-attack">ATTACK</button>
+                <button class="nav-btn" data-target="view-settings">SETTINGS</button>
             </nav>
         </div>
 
