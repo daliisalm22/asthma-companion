@@ -119,18 +119,6 @@
                             <p class="card-subtitle">if you think you are having an asthma attack, then please activate attack mode and follow the instructions.</p>
                             <button id="trigger-attack-mode" class="btn-danger">Log & Open Attack Mode</button>
                         </div>
-
-                        <div class="tracker-card attack-card">
-                            <h3>ACTIVATE ATTACK MODE</h3>
-                            <p class="card-subtitle">if you think you are having an asthma attack, then please activate attack mode and follow the instructions.</p>
-                            <button id="trigger-attack-mode" class="btn-danger">Log & Open Attack Mode</button>
-                        </div>
-
-                        <div class="tracker-card attack-card">
-                            <h3>ACTIVATE ATTACK MODE</h3>
-                            <p class="card-subtitle">if you think you are having an asthma attack, then please activate attack mode and follow the instructions.</p>
-                            <button id="trigger-attack-mode" class="btn-danger">Log & Open Attack Mode</button>
-                        </div>
                     </div>
                 </section>
 
@@ -173,12 +161,58 @@
                 </section>
 
                 <section id="view-attack" class="view attack-container">
-                    <h2 class="emergency-title">Attack Mode Active</h2>
-                    <p>please stay calm. follow the steps below.</p>
-                    <div class="breathing-guide">
-                        <div class="circle-animation"></div>
-                        <p id="breath-instruction">Breathe in slowly (Lippenbremse)... -> Kutschersitz, weiter zusammen tief ein- und ausatmen</p>
+                    <div class ="attack-header">
+                        <h2 class="emergency-title">ꜝꜝAttack Modeꜝꜝ</h2>
+                        <p>please stay calm. follow the steps below.</p>
                     </div>
+                    
+                    <div class="attack-grid-main">
+                        <div class="attack-glass-card rescue-reminder-card">
+                            <div class="reminder-text">
+                                <h3>USE YOUR RESCUE INHALER</h3>
+                                <p>if you have a rescue/reliever inhaler prescribed, use it now according to your action plan (usually 1-2 puffs).</p>
+                            </div>
+                        </div>
+                        <div class="attack-glass-card breathing-card">
+                            <h3>GUIDED BREATHING</h3>
+                            <p class=""card-subtitle">try to sync your breath with the circle pulse. please breathe in when they expand and breathe in when they become smaller.</p>
+                            <br>
+                            <div class="breathing-guide">
+                                <div class="liquid-glass-container">
+                                    <div class="glass-ring ring-outer"></div>
+                                    <div class="glass-ring ring-middle"></div>
+                                    <div class="glass-ring-core"></div>
+                                </div>
+                                <br>
+                                <p id="breath-instruction">breathe in slowly...</p>
+                            </div>
+                        </div>
+
+                        <div class="poses-grid">
+                            <div class="attack-glass-card pose-card">
+                                <div class="pose-img-placeholder">
+                                    <img src="kutschersitz.jpg" alt="race driver posture" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                                </div>
+                                <div class="pose-info">
+                                    <h4>race driver position (Kutschersitz)</h4>
+                                    <p>sit down and lean forward, then rest your elbows on your knees and let your shoulders drop.</p>
+                                </div>
+                            </div>
+
+                            <div class="attack-glass-card pose-card">
+                                <div class="pose-img-placeholder">
+                                    <img src="lippenbremse2.jpg" alt="pursed lip-breathing" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                                </div>
+                                <div class="pose-info">
+                                    <h4>pursed lip-breathing (Lippenbremse)</h4>
+                                    <p>breathe in through your nose and then try to exhale slowly and gently through loosely puckered lips ("pursed lips"). you dont need to press your lips together.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn-teal exit-attack-btn" onclick="switchView('view-home')">I'm stable / exit Attack Mode</button>
+                    
                 </section>
 
                 <section id="view-settings" class="view">
