@@ -885,3 +885,9 @@ button[data-tooltip]:hover::after{
 ::selection{
     background: rgb(113, 67, 130);
 }
+
+#med-status{
+    background-color: rgba(255, 255, 255, 0.22);
+    border-radius: 24px;
+    padding: 7px;
+}

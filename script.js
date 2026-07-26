@@ -46,7 +46,7 @@ if (attackCard) {
 
 const logControllerBtn = document.getElementById("log-controller")
 const logRelieverBtn = document.getElementById("log-reliever");
-const medStatusText = document.getElementById("med status");
+const medStatusText = document.getElementById("med-status");
 const symptomBtns = document.querySelectorAll(".symptom-btn");
 const triggerAttackBtn = document.getElementById("trigger-attack-mode");
 
@@ -73,3 +73,13 @@ if (triggerAttackBtn) {
     });
 }
 
+const exitAttackBtn = document.getElementById("exit-attack-btn");
+
+if(exitAttackBtn) {
+    exitAttackBtn.addEventListener("click", () => {
+        const dashboardNavBtn = document.querySelector('.nav-btn[data-target="view-home"]');
+        if (dashboardNavBtn) {
+            dashboardNavBtn.click();
+        }
+    });
+}
