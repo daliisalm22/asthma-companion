@@ -42,13 +42,22 @@ function renderCalendar(){
         if (allLogs[dateStr]) {
             dayCell.classList.add("has-log");
         }
+        const dayTriggers = typeof getTriggersForDate === 'function' ? getTriggersForDate(dateStr) : [];
+        if (dayTriggers.length > 0) {
+            dayCell.classList.add("has-log");
+            const triggerBadge = document.createElement("span");
+            triggerBadge.className = "calendar-trigger-badge";
+            triggerBadge.textContent = "";
+            triggerBadge.title = `Triggers: ${dayTriggers.join(', ')}`;
+            dayCell.appendChild(triggerBadge);
+        }
 
         dayCell.addEventListener("click", () => {
             document.querySelectorAll('.calendar-day').forEach(cell => {
                 cell.classList.remove('selected');
             });
             dayCell.classList.add('selected');
-            openDayModal(dateStr, allLogs[dateStr]);
+            openDayModal(dateStr, allLogs[dateStr], dayTriggers);
         });
 
         grid.append(dayCell);
@@ -58,6 +67,7 @@ function renderCalendar(){
     const curMonth = String(now.getMonth() + 1). padStart(2, '0');
     const curDay = String(now.getDate()).padStart(2, '0');
     const todayStr = `${now.getFullYear()}-${curMonth}-${curDay}`;
+    const todayTriggers = typeof getTriggersForDate === 'function' ? getTriggersForDate(todayStr) : [];
 
     if (year === now.getFullYear() && month === now.getMonth()) {
         const allCells = grid.querySelectorAll('.calendar-day:not(.empty');
@@ -66,10 +76,10 @@ function renderCalendar(){
                 cell.classList.add('selected');
             }
         });
-        openDayModal(todayStr, allLogs[todayStr]);
+        openDayModal(todayStr, allLogs[todayStr], todayTriggers);
     }
     else{
-        openDayModal(todayStr, allLogs[todayStr]);
+        openDayModal(todayStr, allLogs[todayStr], todayTriggers);
     }
 }
 
@@ -88,7 +98,7 @@ if(prevMonthBtn && nextMonthBtn) {
     });
 }
 
-function openDayModal(dateStr, logData){
+function openDayModal(dateStr, logData, triggersData){
     const title = document.getElementById("modal-date-title");
     const details = document.getElementById("modal-log-details");
 
@@ -97,11 +107,18 @@ function openDayModal(dateStr, logData){
     }
 
     if (details){
-       if (logData) {
+        const hasLog = logData || (triggersData && triggersData.length > 0);
+        if (hasLog) {
+            const controller = logData && logData.controllerTaken ? 'yes' : 'no';
+            const reliever = logData && logData.relieverUsed ? 'yes' : 'no';
+            const symptom = logData && logData.symptom ? logData.symptom : 'none recorded';
+            const triggersFormatted = (triggersData && triggersData.length > 0) ? triggersData.join(', ') : 'none logged';
+
             details.innerHTML = `
-                <b>Controller Taken:</b> ${logData.controllerTaken ? 'yes' : 'no'}<br>
-                <b>Rescue Inhaler Used:</b> ${logData.relieverUsed ? 'yes' : 'no'}<br>
-                <b>Symptoms:</b> ${logData.symptom || 'none recorded'}
+                <b>Controller Taken:</b> ${controller}<br>
+                <b>Rescue Inhaler Used:</b> ${reliever}<br>
+                <b>Symptoms:</b> ${symptom}<br>
+                <b>Triggers:</b> ${triggersFormatted}
             `;
         }
         else {

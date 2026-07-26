@@ -126,6 +126,52 @@ function logSymptomToday(level){
     if (typeof renderCalendar === 'function') renderCalendar();
 }
 
+function saveTriggers() {
+    const checkboxes = document.querySelectorAll('input[name="trigger"]:checked');
+    const selectedTriggers = Array.from(checkboxes).map(cb => cb.value);
+
+    let triggerLogs = JSON.parse(localStorage.getItem('asthma_trigger_logs')) || {};
+    const todayStr = getTodayDateString();
+
+    triggerLogs[todayStr] = selectedTriggers;
+    localStorage.setItem('asthma_trigger_logs', JSON.stringify(triggerLogs));
+
+    if (typeof renderCalendar === 'function'){
+        renderCalendar();
+    }
+
+    alert(`Saved triggers for today: ${selectedTriggers.length > 0 ? selectedTriggers.join(', ') : 'None selected'}`);
+}
+
+function getTriggersForDate(dateStr) {
+    const triggerLogs = JSON.parse(localStorage.getItem('asthma_trigger_logs')) || {};
+    return triggerLogs[dateStr] || [];
+}
+
+const saveTriggersBtn = document.getElementById('save-triggers-btn');
+if(saveTriggersBtn) {
+    saveTriggersBtn.addEventListener('click', saveTriggers);
+}
+
+function exportUserData(){
+    const appData = {
+        streak: localStorage.getItem('asthma_streak') || 0,
+        lastLogDate: localStorage.getItem('asthma_last_log_date') || '',
+        preventerLogs: localStorage.getItem('asthma_preventer_logs') || '{}',
+        relieverLogs: localStorage.getItem('asthma_reliever_logs') || '{}',
+        trigger: localStorage.getItem('asthma_trigger_logs') || '{}',
+        exportDate: new Date().toISOString()
+    };
+
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appData, null, 2));
+    const downloadAnchor = document.createElement('a');
+    downloadAnchor.setAttribute("href", dataStr);
+    downloadAnchor.setAttribute("download", "asthma_tracker_backup.json");
+    document.body.appendChild(downloadAnchor);
+    downloadAnchor.click();
+    downloadAnchor.remove();
+}
+
 async function fetchAirQualityData(){
     const aqiStatusEl = document.getElementById("aqi-status");
     const weatherTipEl = document.getElementById("weather-tip");
@@ -340,5 +386,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-
+    const exportBtn = document.getElementById('export-data-btn');
+    if (exportBtn) {
+        exportBtn.addEventListener('click', exportUserData);
+    }
 });
