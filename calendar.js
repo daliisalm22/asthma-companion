@@ -10,7 +10,7 @@ function renderCalendar(){
 
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth();
-    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "Decemeber"];
+    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     monthYearDisplay.textContent = `${monthNames[month]} ${year}`;
 
     let firstDayIndex = new Date(year, month, 1).getDay();
@@ -36,6 +36,7 @@ function renderCalendar(){
         const today = new Date();
         if (day === today.getDate() && month == today.getMonth() && year === today.getFullYear()){
             dayCell.classList.add("today");
+            dayCell.classList.add("selected");
         }
 
         if (allLogs[dateStr]) {
@@ -43,10 +44,32 @@ function renderCalendar(){
         }
 
         dayCell.addEventListener("click", () => {
+            document.querySelectorAll('.calendar-day').forEach(cell => {
+                cell.classList.remove('selected');
+            });
+            dayCell.classList.add('selected');
             openDayModal(dateStr, allLogs[dateStr]);
         });
 
         grid.append(dayCell);
+    }
+
+    const now = new Date();
+    const curMonth = String(now.getMonth() + 1). padStart(2, '0');
+    const curDay = String(now.getDate()).padStart(2, '0');
+    const todayStr = `${now.getFullYear()}-${curMonth}-${curDay}`;
+
+    if (year === now.getFullYear() && month === now.getMonth()) {
+        const allCells = grid.querySelectorAll('.calendar-day:not(.empty');
+        allCells.forEach(cell => {
+            if (cell.textContent == now.getDate()) {
+                cell.classList.add('selected');
+            }
+        });
+        openDayModal(todayStr, allLogs[todayStr]);
+    }
+    else{
+        openDayModal(todayStr, allLogs[todayStr]);
     }
 }
 
@@ -66,24 +89,25 @@ if(prevMonthBtn && nextMonthBtn) {
 }
 
 function openDayModal(dateStr, logData){
-    const modal = document.getElementById("day-modal");
     const title = document.getElementById("modal-date-title");
     const details = document.getElementById("modal-log-details");
 
-    if (!modal) return;
-
-    title.textContent = `Log for ${dateStr}`;
-    if (logData) {
-        details.innerHTML = `
-            <p><strong>controller taken:</strong> ${logData.controllerTaken ? 'yes' : 'no'}</p>
-            <p><strong>Time:</strong> ${logData.timestamp || 'N/A'}</p>
-        `;
-    }
-    else {
-        details.textContent = "no data recorded for this day.";
+    if (title){
+        title.textContent = `log for ${dateStr}`;
     }
 
-    modal.classList.remove("hidden");
+    if (details){
+       if (logData) {
+            details.innerHTML = `
+                <b>Controller Taken:</b> ${logData.controllerTaken ? 'yes' : 'no'}<br>
+                <b>Rescue Inhaler Used:</b> ${logData.relieverUsed ? 'yes' : 'no'}<br>
+                <b>Symptoms:</b> ${logData.symptom || 'none recorded'}
+            `;
+        }
+        else {
+            details.textContent = "no data recorded for this day.";
+        } 
+    }
 }
 
 const closeModalBtn = document.getElementById("close-modal-btn");
