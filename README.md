@@ -72,13 +72,10 @@ check out the live version here: **https://daliisalm22.github.io/asthma-companio
 
  ݁ .‧₊⋆.٠༺✶༻٠.⋆₊‧. ݁
 
-## video capture
+## app demo video ^^
 
-<p align="center">
-  <video width="100%" controls autoplay loop muted>
-    <source src="screenshots/video capture.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-</p>
+https://github.com/user-attachments/assets/0550fa32-6563-482a-97e8-bac99ef9ad07
+
+ ݁ .‧₊⋆.٠༺✶༻٠.⋆₊‧. ݁
 
 ## i hope u like the app ⋆𐙚₊˚⊹♡
